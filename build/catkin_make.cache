@@ -1,0 +1,2 @@
+service_demo:turtle_topic_demo
+-DCATKIN_DEVEL_PREFIX=/home/cuing/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/cuing/catkin_ws/install -G Unix Makefiles
