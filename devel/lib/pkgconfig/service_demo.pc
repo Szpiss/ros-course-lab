@@ -1,8 +1,0 @@
-prefix=/home/cuing/catkin_ws/devel
-
-Name: service_demo
-Description: Description of service_demo
-Version: 0.0.0
-Cflags: -I/home/cuing/catkin_ws/devel/include
-Libs: -L${prefix}/lib 
-Requires: roscpp rospy std_msgs message_runtime

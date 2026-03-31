@@ -1,8 +1,0 @@
-prefix=/home/cuing/catkin_ws/install
-
-Name: turtle_topic_demo
-Description: Description of turtle_topic_demo
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
