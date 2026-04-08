@@ -1,11 +1,9 @@
 build/
 devel/
-log/
 logs/
-install/
-
 *.pyc
 __pycache__/
-.vscode/
-.idea/
 .DS_Store
+src/wpr_simulation/
+src/wpb_home/
+src/waterplus_map_tools/
