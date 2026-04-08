@@ -1,9 +1,10 @@
 # ROS 课程实验仓库
 
-本仓库是一个 `catkin` 工作空间，用来保存《嵌入式系统原理》课程中的 ROS 实验代码与实验报告。当前已经包含两个可运行的 demo：
+本仓库是一个 `catkin` 工作空间，用来保存《嵌入式系统原理》课程中的 ROS 实验代码与实验报告。当前已经包含 3 个可运行的 demo：
 
 - `turtle_topic_demo`：实验二，基于 Topic 的发布/订阅通信
 - `service_demo`：实验三，基于 Service 的请求/响应通信
+- `tf_demo`：实验四，基于 TF 的坐标变换广播与监听
 
 ## 实验环境
 
@@ -23,8 +24,18 @@ ros-course-lab/
 │       ├── 2315302125 崔子霖1.docx
 │       ├── 2315302125 崔子霖2.docx
 │       ├── 2315302125 崔子霖3.docx
+│       ├── 2315302125 崔子霖4.docx
 │       └── 03069011 嵌入式系统原理_实验报告-模板.docx
 └── src/
+    ├── tf_demo/
+    │   ├── CMakeLists.txt
+    │   ├── package.xml
+    │   ├── README.md
+    │   ├── launch/
+    │   │   └── tf_demo.launch
+    │   └── scripts/
+    │       ├── tf_broadcaster.py
+    │       └── tf_listener.py
     ├── turtle_topic_demo/
     │   ├── CMakeLists.txt
     │   ├── package.xml
@@ -48,6 +59,7 @@ ros-course-lab/
 
 - [实验二：Topic 通信 Demo](src/turtle_topic_demo/README.md)
 - [实验三：Service 通信 Demo](src/service_demo/README.md)
+- [实验四：TF 坐标变换 Demo](src/tf_demo/README.md)
 
 ## 快速开始
 
@@ -71,6 +83,16 @@ roscore
 
 - Topic 实验说明见 [src/turtle_topic_demo/README.md](src/turtle_topic_demo/README.md)
 - Service 实验说明见 [src/service_demo/README.md](src/service_demo/README.md)
+- TF 实验说明见 [src/tf_demo/README.md](src/tf_demo/README.md)
+
+## 实验清单
+
+| 实验 | 主题 | 目录 | 关键能力 |
+| --- | --- | --- | --- |
+| 实验一 | 环境搭建与工具链配置 | `docs/reports/` | Ubuntu、ROS Noetic、VS Code、虚拟机 |
+| 实验二 | Topic 通信 | `src/turtle_topic_demo` | `Publisher`、`Subscriber`、`Twist` |
+| 实验三 | Service 通信 | `src/service_demo` | `.srv`、`advertiseService()`、`call()` |
+| 实验四 | TF 坐标变换 | `src/tf_demo` | `TransformBroadcaster`、`TransformListener`、`lookupTransform()` |
 
 ## 当前实验说明
 
@@ -89,6 +111,14 @@ roscore
 - `server.cpp`：注册 `add_two_ints` 服务，收到请求后计算 `a + b`
 - `client.cpp`：向服务端发送两个整数并打印返回结果
 - `AddTwoInts.srv`：定义请求字段 `a`、`b` 和响应字段 `sum`
+
+### 3. `tf_demo`
+
+这个包演示 `tf` 坐标变换的广播与监听，围绕 `turtlesim` 建立 `world -> turtle1` 的动态坐标关系。
+
+- `tf_broadcaster.py`：订阅 `/turtle1/pose`，并用 `sendTransform()` 广播 TF 变换
+- `tf_listener.py`：通过 `lookupTransform()` 读取 `world` 到 `turtle1` 的最新变换
+- `tf_demo.launch`：一次性启动 `turtlesim`、TF 广播端和监听端
 
 ## 课程实验报告
 
