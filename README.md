@@ -1,10 +1,11 @@
 # ROS 课程实验仓库
 
-本仓库是一个 `catkin` 工作空间，用来保存《嵌入式系统原理》课程中的 ROS 实验代码与实验报告。当前已经包含 3 个可运行的 demo：
+本仓库是一个 `catkin` 工作空间，用来保存《嵌入式系统原理》课程中的 ROS 实验代码与实验报告。当前已经包含 4 个可运行的 demo：
 
 - `turtle_topic_demo`：实验二，基于 Topic 的发布/订阅通信
 - `service_demo`：实验三，基于 Service 的请求/响应通信
 - `tf_demo`：实验四，基于 TF 的坐标变换广播与监听
+- `sensor_robot_sim`：实验五，基于传感器的机器人运动仿真
 
 ## 实验环境
 
@@ -13,6 +14,7 @@
 - Python 3
 - `catkin_make`
 - `turtlesim`
+- Gazebo 11
 
 ## 仓库结构
 
@@ -44,15 +46,27 @@ ros-course-lab/
     │       ├── pub_circle.py
     │       ├── pub_square.py
     │       └── sub_vel.py
-    └── service_demo/
+    ├── service_demo/
+    │   ├── CMakeLists.txt
+    │   ├── package.xml
+    │   ├── README.md
+    │   ├── src/
+    │   │   ├── client.cpp
+    │   │   └── server.cpp
+    │   └── srv/
+    │       └── AddTwoInts.srv
+    └── sensor_robot_sim/
         ├── CMakeLists.txt
         ├── package.xml
         ├── README.md
-        ├── src/
-        │   ├── client.cpp
-        │   └── server.cpp
-        └── srv/
-            └── AddTwoInts.srv
+        ├── launch/
+        │   └── gazebo.launch
+        ├── scripts/
+        │   └── obstacle_avoid.py
+        ├── urdf/
+        │   └── robot.urdf
+        └── worlds/
+            └── simple.world
 ```
 
 ## Demo 导航
@@ -60,6 +74,7 @@ ros-course-lab/
 - [实验二：Topic 通信 Demo](src/turtle_topic_demo/README.md)
 - [实验三：Service 通信 Demo](src/service_demo/README.md)
 - [实验四：TF 坐标变换 Demo](src/tf_demo/README.md)
+- [实验五：机器人运动仿真 Demo](src/sensor_robot_sim/README.md)
 
 ## 快速开始
 
@@ -68,7 +83,7 @@ ros-course-lab/
 在仓库根目录执行：
 
 ```bash
-cd /Users/cuing/ros/ros-course-lab
+cd ~/catkin_ws
 catkin_make
 source devel/setup.bash
 ```
@@ -84,6 +99,7 @@ roscore
 - Topic 实验说明见 [src/turtle_topic_demo/README.md](src/turtle_topic_demo/README.md)
 - Service 实验说明见 [src/service_demo/README.md](src/service_demo/README.md)
 - TF 实验说明见 [src/tf_demo/README.md](src/tf_demo/README.md)
+- 机器人仿真实验说明见 [src/sensor_robot_sim/README.md](src/sensor_robot_sim/README.md)
 
 ## 实验清单
 
@@ -93,6 +109,7 @@ roscore
 | 实验二 | Topic 通信 | `src/turtle_topic_demo` | `Publisher`、`Subscriber`、`Twist` |
 | 实验三 | Service 通信 | `src/service_demo` | `.srv`、`advertiseService()`、`call()` |
 | 实验四 | TF 坐标变换 | `src/tf_demo` | `TransformBroadcaster`、`TransformListener`、`lookupTransform()` |
+| 实验五 | 机器人运动仿真 | `src/sensor_robot_sim` | `URDF`、Gazebo、`LaserScan`、闭环避障 |
 
 ## 当前实验说明
 
@@ -119,6 +136,15 @@ roscore
 - `tf_broadcaster.py`：订阅 `/turtle1/pose`，并用 `sendTransform()` 广播 TF 变换
 - `tf_listener.py`：通过 `lookupTransform()` 读取 `world` 到 `turtle1` 的最新变换
 - `tf_demo.launch`：一次性启动 `turtlesim`、TF 广播端和监听端
+
+### 4. `sensor_robot_sim`
+
+这个包使用 `URDF`、`Gazebo` 和 `LaserScan` 完成一个基础移动机器人仿真，并基于传感器反馈实现闭环避障。
+
+- `robot.urdf`：定义底盘、车轮、激光雷达以及 Gazebo 驱动/传感器插件
+- `simple.world`：定义带障碍物的仿真世界
+- `gazebo.launch`：一键启动 Gazebo、生成机器人并运行控制节点
+- `obstacle_avoid.py`：订阅 `/scan` 并发布 `/cmd_vel`，区分三种情况实现直行、左转、右转
 
 ## 课程实验报告
 
