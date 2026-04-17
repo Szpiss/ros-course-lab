@@ -27,6 +27,7 @@ ros-course-lab/
 │       ├── 2315302125 崔子霖2.docx
 │       ├── 2315302125 崔子霖3.docx
 │       ├── 2315302125 崔子霖4.docx
+│       ├── 2315302125 崔子霖5.docx
 │       └── 03069011 嵌入式系统原理_实验报告-模板.docx
 └── src/
     ├── tf_demo/
@@ -74,7 +75,7 @@ ros-course-lab/
 - [实验二：Topic 通信 Demo](src/turtle_topic_demo/README.md)
 - [实验三：Service 通信 Demo](src/service_demo/README.md)
 - [实验四：TF 坐标变换 Demo](src/tf_demo/README.md)
-- [实验五：机器人运动仿真 Demo](src/sensor_robot_sim/README.md)
+- [实验五：传感器仿真与机器人运动 Demo](src/sensor_robot_sim/README.md)
 
 ## 快速开始
 
@@ -83,7 +84,7 @@ ros-course-lab/
 在仓库根目录执行：
 
 ```bash
-cd ~/catkin_ws
+cd /Users/cuing/ros/ros-course-lab
 catkin_make
 source devel/setup.bash
 ```
@@ -99,7 +100,7 @@ roscore
 - Topic 实验说明见 [src/turtle_topic_demo/README.md](src/turtle_topic_demo/README.md)
 - Service 实验说明见 [src/service_demo/README.md](src/service_demo/README.md)
 - TF 实验说明见 [src/tf_demo/README.md](src/tf_demo/README.md)
-- 机器人仿真实验说明见 [src/sensor_robot_sim/README.md](src/sensor_robot_sim/README.md)
+- 传感器仿真实验说明见 [src/sensor_robot_sim/README.md](src/sensor_robot_sim/README.md)
 
 ## 实验清单
 
@@ -109,7 +110,7 @@ roscore
 | 实验二 | Topic 通信 | `src/turtle_topic_demo` | `Publisher`、`Subscriber`、`Twist` |
 | 实验三 | Service 通信 | `src/service_demo` | `.srv`、`advertiseService()`、`call()` |
 | 实验四 | TF 坐标变换 | `src/tf_demo` | `TransformBroadcaster`、`TransformListener`、`lookupTransform()` |
-| 实验五 | 机器人运动仿真 | `src/sensor_robot_sim` | `URDF`、Gazebo、`LaserScan`、闭环避障 |
+| 实验五 | 传感器仿真与机器人运动 | `src/sensor_robot_sim` | `URDF`、Gazebo、`LaserScan`、闭环避障 |
 
 ## 当前实验说明
 
