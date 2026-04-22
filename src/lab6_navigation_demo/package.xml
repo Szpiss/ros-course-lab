@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>lab6_navigation_demo</name>
+  <version>0.0.1</version>
+  <description>Lab 6 helper scripts and saved map for speech-triggered navigation.</description>
+
+  <maintainer email="cuing@example.com">cuing</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>waterplus_map_tools</depend>
+
+  <export/>
+</package>

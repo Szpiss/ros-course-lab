@@ -1,0 +1,13 @@
+<launch>
+  <node pkg="lab6_navigation_demo"
+        type="lab6_voice_bridge.py"
+        name="lab6_voice_bridge"
+        output="screen" />
+
+  <node pkg="lab6_navigation_demo"
+        type="setup_lab6_navigation.py"
+        name="setup_lab6_navigation"
+        output="screen">
+    <param name="publish_goal" value="true" />
+  </node>
+</launch>

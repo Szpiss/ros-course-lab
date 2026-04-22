@@ -1,11 +1,12 @@
 # ROS 课程实验仓库
 
-本仓库是一个 `catkin` 工作空间，用来保存《嵌入式系统原理》课程中的 ROS 实验代码与实验报告。当前已经包含 4 个可运行的 demo：
+本仓库是一个 `catkin` 工作空间，用来保存《嵌入式系统原理》课程中的 ROS 实验代码与实验报告。当前已经包含 5 个实验目录，其中前 4 个是独立 demo，实验六额外整理成了一个导航补充包：
 
 - `turtle_topic_demo`：实验二，基于 Topic 的发布/订阅通信
 - `service_demo`：实验三，基于 Service 的请求/响应通信
 - `tf_demo`：实验四，基于 TF 的坐标变换广播与监听
 - `sensor_robot_sim`：实验五，基于传感器的机器人运动仿真
+- `lab6_navigation_demo`：实验六，基于建图、命名航点和语音结果触发的自主导航补充代码
 
 ## 实验环境
 
@@ -28,8 +29,21 @@ ros-course-lab/
 │       ├── 2315302125 崔子霖3.docx
 │       ├── 2315302125 崔子霖4.docx
 │       ├── 2315302125 崔子霖5.docx
+│       ├── 2315302125 崔子霖6.docx
 │       └── 03069011 嵌入式系统原理_实验报告-模板.docx
 └── src/
+    ├── lab6_navigation_demo/
+    │   ├── CMakeLists.txt
+    │   ├── package.xml
+    │   ├── README.md
+    │   ├── launch/
+    │   │   └── lab6_voice_navigation.launch
+    │   ├── maps/
+    │   │   ├── map.pgm
+    │   │   └── map.yaml
+    │   └── scripts/
+    │       ├── lab6_voice_bridge.py
+    │       └── setup_lab6_navigation.py
     ├── tf_demo/
     │   ├── CMakeLists.txt
     │   ├── package.xml
@@ -76,6 +90,7 @@ ros-course-lab/
 - [实验三：Service 通信 Demo](src/service_demo/README.md)
 - [实验四：TF 坐标变换 Demo](src/tf_demo/README.md)
 - [实验五：传感器仿真与机器人运动 Demo](src/sensor_robot_sim/README.md)
+- [实验六：语音识别与自主导航补充代码](src/lab6_navigation_demo/README.md)
 
 ## 快速开始
 
@@ -101,6 +116,7 @@ roscore
 - Service 实验说明见 [src/service_demo/README.md](src/service_demo/README.md)
 - TF 实验说明见 [src/tf_demo/README.md](src/tf_demo/README.md)
 - 传感器仿真实验说明见 [src/sensor_robot_sim/README.md](src/sensor_robot_sim/README.md)
+- 语音导航实验说明见 [src/lab6_navigation_demo/README.md](src/lab6_navigation_demo/README.md)
 
 ## 实验清单
 
@@ -111,6 +127,7 @@ roscore
 | 实验三 | Service 通信 | `src/service_demo` | `.srv`、`advertiseService()`、`call()` |
 | 实验四 | TF 坐标变换 | `src/tf_demo` | `TransformBroadcaster`、`TransformListener`、`lookupTransform()` |
 | 实验五 | 传感器仿真与机器人运动 | `src/sensor_robot_sim` | `URDF`、Gazebo、`LaserScan`、闭环避障 |
+| 实验六 | 机器人语音识别和自主导航综合实例 | `src/lab6_navigation_demo` | `map_server`、`amcl`、`move_base`、命名航点、语音结果映射 |
 
 ## 当前实验说明
 
@@ -147,6 +164,17 @@ roscore
 - `gazebo.launch`：一键启动 Gazebo、生成机器人并运行控制节点
 - `obstacle_avoid.py`：订阅 `/scan` 并发布 `/cmd_vel`，区分三种情况实现直行、左转、右转
 
+### 5. `lab6_navigation_demo`
+
+这个包整理了实验六在 Ubuntu 中真正新增的实验专用代码和地图成果，配合现成的导航仿真环境完成“建图 + 航点 + 语音触发导航”。
+
+- `maps/map.pgm`、`maps/map.yaml`：实验六实际建图后保存回仓库的地图文件
+- `setup_lab6_navigation.py`：发布 `/initialpose`、写入 4 个房间航点，并发送示例导航目标
+- `lab6_voice_bridge.py`：订阅 `/xfyun/iat`，把英文房间名映射为 `/waterplus/navi_waypoint`
+- `lab6_voice_navigation.launch`：一键启动实验六辅助节点
+
+说明：实验六目录保存的是“本次实验新增与整理出的代码、地图和说明”，默认依赖 Ubuntu 实验环境中已安装的 `wpr_simulation`、`waterplus_map_tools`、`wpb_home_tutorials` 等导航仿真包。
+
 ## 课程实验报告
 
-实验报告模板和已完成报告保存在 `docs/reports/` 目录中，可用于课程提交或后续整理。
+实验报告模板和已完成报告保存在 `docs/reports/` 目录中，可用于课程提交或后续整理。当前已经包含实验 1 到实验 6 的报告，其中实验六报告与补充代码、地图文件已经同步到仓库。
