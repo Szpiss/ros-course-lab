@@ -179,32 +179,25 @@
   </gazebo>
 
   <!--
-    Gazebo 差速驱动插件：
-    后左右轮作为驱动轮，订阅 /cmd_vel，发布 /odom。
-    前轮为被动轮，结构上保留四轮小车外观，同时控制逻辑保持简单稳定。
+    Gazebo 四轮滑移转向插件：
+    四个轮子都参与驱动，订阅 /cmd_vel，发布 /odom。
+    相比只驱动后轮，这种写法更适合课程里的四轮小车，爬坡和转向更稳定。
   -->
   <gazebo>
-    <plugin name="mountain_car_diff_drive" filename="libgazebo_ros_diff_drive.so">
-      <ros>
-        <namespace>/</namespace>
-      </ros>
-      <legacyMode>false</legacyMode>
-      <leftJoint>rear_left_wheel_joint</leftJoint>
-      <rightJoint>rear_right_wheel_joint</rightJoint>
+    <plugin name="mountain_car_skid_steer_drive" filename="libgazebo_ros_skid_steer_drive.so">
+      <robotNamespace>/</robotNamespace>
+      <leftFrontJoint>front_left_wheel_joint</leftFrontJoint>
+      <rightFrontJoint>front_right_wheel_joint</rightFrontJoint>
+      <leftRearJoint>rear_left_wheel_joint</leftRearJoint>
+      <rightRearJoint>rear_right_wheel_joint</rightRearJoint>
       <wheelSeparation>${2.0 * wheel_y}</wheelSeparation>
       <wheelDiameter>${2.0 * wheel_radius}</wheelDiameter>
-      <wheelAcceleration>1.2</wheelAcceleration>
-      <wheelTorque>18.0</wheelTorque>
-      <commandTopic>cmd_vel</commandTopic>
+      <torque>24.0</torque>
+      <topicName>cmd_vel</topicName>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
       <robotBaseFrame>base_footprint</robotBaseFrame>
-      <odometrySource>world</odometrySource>
-      <publishTf>true</publishTf>
-      <publishOdomTF>true</publishOdomTF>
-      <publishWheelTF>true</publishWheelTF>
-      <publishOdom>true</publishOdom>
-      <publishWheelJointState>true</publishWheelJointState>
+      <broadcastTF>true</broadcastTF>
       <updateRate>50</updateRate>
     </plugin>
   </gazebo>
