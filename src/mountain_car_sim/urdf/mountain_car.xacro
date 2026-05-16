@@ -179,26 +179,19 @@
   </gazebo>
 
   <!--
-    Gazebo 四轮滑移转向插件：
-    四个轮子都参与驱动，订阅 /cmd_vel，发布 /odom。
-    相比只驱动后轮，这种写法更适合课程里的四轮小车，爬坡和转向更稳定。
+    Gazebo 平面运动插件：
+    订阅 /cmd_vel 并直接驱动车体移动，保留四轮小车外观。
+    该插件在 ROS Noetic + Gazebo11 的课程实验环境中更稳定，适合演示和截图。
   -->
   <gazebo>
-    <plugin name="mountain_car_skid_steer_drive" filename="libgazebo_ros_skid_steer_drive.so">
+    <plugin name="mountain_car_planar_move" filename="libgazebo_ros_planar_move.so">
       <robotNamespace>/</robotNamespace>
-      <leftFrontJoint>front_left_wheel_joint</leftFrontJoint>
-      <rightFrontJoint>front_right_wheel_joint</rightFrontJoint>
-      <leftRearJoint>rear_left_wheel_joint</leftRearJoint>
-      <rightRearJoint>rear_right_wheel_joint</rightRearJoint>
-      <wheelSeparation>${2.0 * wheel_y}</wheelSeparation>
-      <wheelDiameter>${2.0 * wheel_radius}</wheelDiameter>
-      <torque>24.0</torque>
-      <topicName>cmd_vel</topicName>
+      <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
       <robotBaseFrame>base_footprint</robotBaseFrame>
-      <broadcastTF>true</broadcastTF>
-      <updateRate>50</updateRate>
+      <odometryRate>50.0</odometryRate>
+      <publishTF>true</publishTF>
     </plugin>
   </gazebo>
 </robot>
