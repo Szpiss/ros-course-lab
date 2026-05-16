@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<robot name="mountain_car" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!--
+    四轮山地小车模型：
+    - base_footprint 作为地面投影坐标系；
+    - base_link 作为车体主 link；
+    - 后轮接入 Gazebo 差速驱动插件，前轮作为被动支撑轮。
+  -->
+
+  <xacro:property name="chassis_length" value="0.75" />
+  <xacro:property name="chassis_width" value="0.45" />
+  <xacro:property name="chassis_height" value="0.16" />
+  <xacro:property name="chassis_z" value="0.18" />
+  <xacro:property name="wheel_radius" value="0.12" />
+  <xacro:property name="wheel_width" value="0.08" />
+  <xacro:property name="wheel_x" value="0.27" />
+  <xacro:property name="wheel_y" value="0.265" />
+  <xacro:property name="wheel_z" value="0.12" />
+
+  <!-- ========== 材质定义：颜色在 RViz 和 Gazebo 中都易于识别 ========== -->
+  <material name="orange_body">
+    <color rgba="1.0 0.42 0.05 1.0" />
+  </material>
+  <material name="dark_wheel">
+    <color rgba="0.03 0.03 0.03 1.0" />
+  </material>
+  <material name="silver">
+    <color rgba="0.75 0.75 0.72 1.0" />
+  </material>
+  <material name="blue_window">
+    <color rgba="0.10 0.34 0.85 1.0" />
+  </material>
+
+  <!-- KDL 不建议根 link 带惯量，因此保留一个无惯量的 base_footprint。 -->
+  <link name="base_footprint" />
+
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint" />
+    <child link="base_link" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+
+  <!-- ========== 小车底盘 base_link ========== -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 ${chassis_z}" rpy="0 0 0" />
+      <geometry>
+        <box size="${chassis_length} ${chassis_width} ${chassis_height}" />
+      </geometry>
+      <material name="orange_body" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${chassis_z}" rpy="0 0 0" />
+      <geometry>
+        <box size="${chassis_length} ${chassis_width} ${chassis_height}" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 ${chassis_z}" rpy="0 0 0" />
+      <mass value="7.0" />
+      <inertia ixx="0.1330" ixy="0.0" ixz="0.0"
+               iyy="0.3431" iyz="0.0"
+               izz="0.4463" />
+    </inertial>
+  </link>
+
+  <!-- 车顶小块用于区分前后方向，截图时能看清小车朝向。 -->
+  <link name="top_cabin">
+    <visual>
+      <origin xyz="0.05 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.34 0.30 0.16" />
+      </geometry>
+      <material name="blue_window" />
+    </visual>
+    <collision>
+      <origin xyz="0.05 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.34 0.30 0.16" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.05 0 0" rpy="0 0 0" />
+      <mass value="1.2" />
+      <inertia ixx="0.0116" ixy="0.0" ixz="0.0"
+               iyy="0.0142" iyz="0.0"
+               izz="0.0205" />
+    </inertial>
+  </link>
+
+  <joint name="top_cabin_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="top_cabin" />
+    <origin xyz="0.03 0 0.34" rpy="0 0 0" />
+  </joint>
+
+  <xacro:macro name="wheel_link" params="name">
+    <link name="${name}">
+      <visual>
+        <!-- URDF 圆柱默认沿 z 轴，旋转 90 度后使车轮轴线沿 y 轴。 -->
+        <origin xyz="0 0 0" rpy="1.5708 0 0" />
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}" />
+        </geometry>
+        <material name="dark_wheel" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="1.5708 0 0" />
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}" />
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.7" />
+        <inertia ixx="0.0029" ixy="0.0" ixz="0.0"
+                 iyy="0.0050" iyz="0.0"
+                 izz="0.0029" />
+      </inertial>
+    </link>
+  </xacro:macro>
+
+  <xacro:macro name="wheel_joint" params="name child x y">
+    <joint name="${name}" type="continuous">
+      <parent link="base_link" />
+      <child link="${child}" />
+      <origin xyz="${x} ${y} ${wheel_z}" rpy="0 0 0" />
+      <axis xyz="0 1 0" />
+      <dynamics damping="0.12" friction="0.02" />
+    </joint>
+  </xacro:macro>
+
+  <!-- ========== 四个车轮 ========== -->
+  <xacro:wheel_link name="front_left_wheel" />
+  <xacro:wheel_link name="front_right_wheel" />
+  <xacro:wheel_link name="rear_left_wheel" />
+  <xacro:wheel_link name="rear_right_wheel" />
+
+  <xacro:wheel_joint name="front_left_wheel_joint" child="front_left_wheel" x="${wheel_x}" y="${wheel_y}" />
+  <xacro:wheel_joint name="front_right_wheel_joint" child="front_right_wheel" x="${wheel_x}" y="${-wheel_y}" />
+  <xacro:wheel_joint name="rear_left_wheel_joint" child="rear_left_wheel" x="${-wheel_x}" y="${wheel_y}" />
+  <xacro:wheel_joint name="rear_right_wheel_joint" child="rear_right_wheel" x="${-wheel_x}" y="${-wheel_y}" />
+
+  <!-- ========== Gazebo 外观和接触参数 ========== -->
+  <gazebo reference="base_link">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="top_cabin">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <gazebo reference="front_left_wheel">
+    <material>Gazebo/Black</material>
+    <mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <kp>100000.0</kp>
+    <kd>1.0</kd>
+  </gazebo>
+  <gazebo reference="front_right_wheel">
+    <material>Gazebo/Black</material>
+    <mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <kp>100000.0</kp>
+    <kd>1.0</kd>
+  </gazebo>
+  <gazebo reference="rear_left_wheel">
+    <material>Gazebo/Black</material>
+    <mu1>1.5</mu1>
+    <mu2>1.5</mu2>
+    <kp>100000.0</kp>
+    <kd>1.0</kd>
+  </gazebo>
+  <gazebo reference="rear_right_wheel">
+    <material>Gazebo/Black</material>
+    <mu1>1.5</mu1>
+    <mu2>1.5</mu2>
+    <kp>100000.0</kp>
+    <kd>1.0</kd>
+  </gazebo>
+
+  <!--
+    Gazebo 差速驱动插件：
+    后左右轮作为驱动轮，订阅 /cmd_vel，发布 /odom。
+    前轮为被动轮，结构上保留四轮小车外观，同时控制逻辑保持简单稳定。
+  -->
+  <gazebo>
+    <plugin name="mountain_car_diff_drive" filename="libgazebo_ros_diff_drive.so">
+      <ros>
+        <namespace>/</namespace>
+      </ros>
+      <legacyMode>false</legacyMode>
+      <leftJoint>rear_left_wheel_joint</leftJoint>
+      <rightJoint>rear_right_wheel_joint</rightJoint>
+      <wheelSeparation>${2.0 * wheel_y}</wheelSeparation>
+      <wheelDiameter>${2.0 * wheel_radius}</wheelDiameter>
+      <wheelAcceleration>1.2</wheelAcceleration>
+      <wheelTorque>18.0</wheelTorque>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+      <odometrySource>world</odometrySource>
+      <publishTf>true</publishTf>
+      <publishOdomTF>true</publishOdomTF>
+      <publishWheelTF>true</publishWheelTF>
+      <publishOdom>true</publishOdom>
+      <publishWheelJointState>true</publishWheelJointState>
+      <updateRate>50</updateRate>
+    </plugin>
+  </gazebo>
+</robot>

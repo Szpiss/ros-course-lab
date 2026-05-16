@@ -1,0 +1,22 @@
+<launch>
+  <arg name="gui" default="true" />
+  <arg name="headless" default="false" />
+  <arg name="paused" default="false" />
+  <arg name="use_sim_time" default="true" />
+
+  <!-- 让 Gazebo 能通过 model://mountain_terrain 等 URI 找到本包 models 目录。 -->
+  <env name="GAZEBO_MODEL_PATH" value="$(find mountain_car_sim)/models:$(optenv GAZEBO_MODEL_PATH)" />
+
+  <!-- gazebo_ros_diff_drive 插件位于 ROS 安装目录，保留原有环境变量便于不同实验机兼容。 -->
+  <env name="GAZEBO_PLUGIN_PATH" value="/opt/ros/noetic/lib:$(optenv GAZEBO_PLUGIN_PATH)" />
+
+  <!-- 启动 Gazebo Classic 11，并加载本实验的山地世界。 -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find mountain_car_sim)/worlds/mountain_scene.world" />
+    <arg name="paused" value="$(arg paused)" />
+    <arg name="use_sim_time" value="$(arg use_sim_time)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="headless" value="$(arg headless)" />
+    <arg name="debug" value="false" />
+  </include>
+</launch>

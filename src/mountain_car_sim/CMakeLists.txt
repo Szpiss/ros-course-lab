@@ -1,0 +1,30 @@
+cmake_minimum_required(VERSION 3.0.2)
+project(mountain_car_sim)
+
+find_package(catkin REQUIRED COMPONENTS
+  gazebo_ros
+  geometry_msgs
+  robot_state_publisher
+  rospy
+  std_msgs
+  xacro
+)
+
+catkin_package()
+
+include_directories(
+  ${catkin_INCLUDE_DIRS}
+)
+
+catkin_install_python(PROGRAMS
+  scripts/simple_car_controller.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(DIRECTORY
+  launch
+  models
+  urdf
+  worlds
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)

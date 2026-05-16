@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="rock_obstacle">
+    <static>true</static>
+
+    <!-- 由多个球体拼成不规则岩石，避免依赖外部 mesh。 -->
+    <link name="rock_cluster">
+      <collision name="main_collision">
+        <pose>0 0 0.16 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.28</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      <visual name="main_visual">
+        <pose>0 0 0.16 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.28</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient>0.26 0.26 0.25 1</ambient>
+          <diffuse>0.42 0.42 0.40 1</diffuse>
+        </material>
+      </visual>
+
+      <collision name="side_collision">
+        <pose>0.18 -0.12 0.12 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.20</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      <visual name="side_visual">
+        <pose>0.18 -0.12 0.12 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.20</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient>0.22 0.22 0.22 1</ambient>
+          <diffuse>0.36 0.36 0.35 1</diffuse>
+        </material>
+      </visual>
+
+      <collision name="cap_collision">
+        <pose>-0.14 0.12 0.24 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.17</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      <visual name="cap_visual">
+        <pose>-0.14 0.12 0.24 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.17</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient>0.30 0.30 0.29 1</ambient>
+          <diffuse>0.48 0.48 0.46 1</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

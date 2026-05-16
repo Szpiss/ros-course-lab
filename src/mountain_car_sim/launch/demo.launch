@@ -1,0 +1,25 @@
+<launch>
+  <arg name="gui" default="true" />
+  <arg name="headless" default="false" />
+  <arg name="paused" default="false" />
+  <arg name="start_controller" default="true" />
+
+  <!-- 一键启动：先加载山地场景，再生成小车。 -->
+  <include file="$(find mountain_car_sim)/launch/mountain_world.launch">
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="headless" value="$(arg headless)" />
+    <arg name="paused" value="$(arg paused)" />
+  </include>
+
+  <include file="$(find mountain_car_sim)/launch/spawn_mountain_car.launch">
+    <arg name="x" value="-4.0" />
+    <arg name="y" value="0.0" />
+    <arg name="z" value="0.45" />
+    <arg name="yaw" value="0.0" />
+  </include>
+
+  <!-- 自动巡航脚本：前进、左转、再前进，适合录制运动截图。 -->
+  <node if="$(arg start_controller)" name="simple_car_controller"
+        pkg="mountain_car_sim" type="simple_car_controller.py"
+        output="screen" />
+</launch>

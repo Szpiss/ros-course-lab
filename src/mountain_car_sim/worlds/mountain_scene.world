@@ -1,0 +1,79 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="mountain_scene">
+    <!-- 物理参数保持保守，降低小车在斜坡接触时抖动或弹飞的概率。 -->
+    <physics name="default_physics" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>80</iters>
+          <sor>1.0</sor>
+        </solver>
+        <constraints>
+          <cfm>0.0</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>1.0</contact_max_correcting_vel>
+          <contact_surface_layer>0.001</contact_surface_layer>
+        </constraints>
+      </ode>
+    </physics>
+
+    <scene>
+      <ambient>0.45 0.45 0.45 1</ambient>
+      <background>0.70 0.82 0.95 1</background>
+      <shadows>true</shadows>
+    </scene>
+
+    <!-- Gazebo 自带太阳光，保证山坡和车体有明显阴影。 -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- 保留大平面作为外围地面，山体模型叠放在其上方。 -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- 山地主体：由多段倾斜 box 和平台组合成可行驶山路。 -->
+    <include>
+      <uri>model://mountain_terrain</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <!-- 多个岩石障碍物沿山路布置，便于展示避障/绕行效果。 -->
+    <include>
+      <name>rock_obstacle_left</name>
+      <uri>model://rock_obstacle</uri>
+      <pose>-1.2 1.15 0.18 0 0 0.35</pose>
+    </include>
+
+    <include>
+      <name>rock_obstacle_right</name>
+      <uri>model://rock_obstacle</uri>
+      <pose>1.2 -1.05 0.58 0 0 -0.55</pose>
+    </include>
+
+    <include>
+      <name>rock_obstacle_top</name>
+      <uri>model://rock_obstacle</uri>
+      <pose>3.0 0.95 0.92 0 0 0.85</pose>
+    </include>
+
+    <!-- 终点检查点，作为实验截图中的目标标志物。 -->
+    <include>
+      <uri>model://checkpoint_flag</uri>
+      <pose>4.7 0.0 1.05 0 0 0</pose>
+    </include>
+
+    <!-- 默认相机视角：启动后可以直接看到山路、小车入口和终点旗帜。 -->
+    <gui fullscreen="0">
+      <camera name="user_camera">
+        <pose>-5.5 -6.0 4.2 0 0.58 0.76</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+  </world>
+</sdf>
