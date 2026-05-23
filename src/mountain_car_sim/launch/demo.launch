@@ -3,7 +3,7 @@
   <arg name="headless" default="false" />
   <arg name="paused" default="false" />
   <arg name="start_controller" default="true" />
-  <arg name="controller_mode" default="auto" />
+  <arg name="controller_mode" default="flag_nav" />
 
   <!-- 一键启动：先加载山地场景，再生成小车。 -->
   <include file="$(find mountain_car_sim)/launch/mountain_world.launch">
@@ -19,10 +19,17 @@
     <arg name="yaw" value="0.0" />
   </include>
 
-  <!-- 自动巡航脚本：前进、左转、再前进，适合录制运动截图。 -->
-  <node if="$(arg start_controller)" name="simple_car_controller"
+  <!-- 自动寻迹避障：沿山路绕开岩石，到达红旗后停止。 -->
+  <node if="$(eval arg('start_controller') == 'true' and arg('controller_mode') == 'flag_nav')"
+        name="autonomous_flag_nav"
+        pkg="mountain_car_sim" type="autonomous_flag_nav.py"
+        output="screen" />
+
+  <!-- 旧版自动巡航：仅用于对比或录制简单运动。WASD 请单独 rosrun，不从 roslaunch 读取键盘。 -->
+  <node if="$(eval arg('start_controller') == 'true' and arg('controller_mode') == 'auto')"
+        name="simple_car_controller"
         pkg="mountain_car_sim" type="simple_car_controller.py"
         output="screen">
-    <param name="mode" value="$(arg controller_mode)" />
+    <param name="mode" value="auto" />
   </node>
 </launch>

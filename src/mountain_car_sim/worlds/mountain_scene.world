@@ -37,7 +37,7 @@
       <uri>model://ground_plane</uri>
     </include>
 
-    <!-- 山地主体：由多段倾斜 box 和平台组合成可行驶山路。 -->
+    <!-- 山地主体：程序化 mesh 地形，包含起伏山体和蛇形土路。 -->
     <include>
       <uri>model://mountain_terrain</uri>
       <pose>0 0 0 0 0 0</pose>
