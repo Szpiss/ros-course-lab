@@ -9,10 +9,18 @@
   <param name="robot_description"
          command="$(find xacro)/xacro '$(find mountain_car_sim)/urdf/mountain_car.xacro'" />
 
-  <!-- 将四轮小车生成到 Gazebo 中，初始位置放在山路入口附近。 -->
-  <node name="spawn_mountain_car" pkg="gazebo_ros" type="spawn_model"
-        args="-urdf -param robot_description -model $(arg model_name) -x $(arg x) -y $(arg y) -z $(arg z) -Y $(arg yaw)"
-        output="screen" />
+  <!--
+    将四轮小车生成到 Gazebo 中。
+    先删除旧的同名模型，避免重复启动时报 entity already exists。
+  -->
+  <node name="reset_spawn_mountain_car" pkg="mountain_car_sim" type="reset_spawn_model.py"
+        output="screen">
+    <param name="model_name" value="$(arg model_name)" />
+    <param name="x" value="$(arg x)" />
+    <param name="y" value="$(arg y)" />
+    <param name="z" value="$(arg z)" />
+    <param name="yaw" value="$(arg yaw)" />
+  </node>
 
   <!-- 发布 TF，便于在 RViz 或实验报告中说明 base_link/车轮关系。 -->
   <node name="mountain_car_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"

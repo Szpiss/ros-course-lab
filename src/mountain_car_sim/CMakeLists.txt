@@ -17,6 +17,7 @@ include_directories(
 )
 
 catkin_install_python(PROGRAMS
+  scripts/reset_spawn_model.py
   scripts/simple_car_controller.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
