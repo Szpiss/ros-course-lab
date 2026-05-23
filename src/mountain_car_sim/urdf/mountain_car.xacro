@@ -4,7 +4,7 @@
     四轮山地小车模型：
     - base_footprint 作为地面投影坐标系；
     - base_link 作为车体主 link；
-    - 后轮接入 Gazebo 差速驱动插件，前轮作为被动支撑轮。
+    - Gazebo 平面运动插件订阅 /cmd_vel，便于 WASD 和自动巡航控制。
   -->
 
   <xacro:property name="chassis_length" value="0.75" />
