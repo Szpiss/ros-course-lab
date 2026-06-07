@@ -1,6 +1,6 @@
 # ROS 课程实验仓库
 
-本仓库是一个 `catkin` 工作空间，用来保存《嵌入式系统原理》课程中的 ROS 实验代码与实验报告。当前已经包含 5 个实验目录，其中前 4 个是独立 demo，实验六额外整理成了一个导航补充包：
+本仓库是一个 `catkin` 工作空间，用来保存《嵌入式系统原理》课程中的 ROS 实验代码与实验报告。当前已经包含实验 1 到实验 8 的报告，以及实验 2 到实验 6 的 ROS 代码整理。其中前 4 个是独立 demo，实验六额外整理成了一个导航补充包：
 
 - `turtle_topic_demo`：实验二，基于 Topic 的发布/订阅通信
 - `service_demo`：实验三，基于 Service 的请求/响应通信
@@ -30,6 +30,9 @@ ros-course-lab/
 │       ├── 2315302125 崔子霖4.docx
 │       ├── 2315302125 崔子霖5.docx
 │       ├── 2315302125 崔子霖6.docx
+│       ├── 2315302125 崔子霖7.docx
+│       ├── 2315302125 崔子霖8.docx
+│       ├── README.md
 │       └── 03069011 嵌入式系统原理_实验报告-模板.docx
 └── src/
     ├── lab6_navigation_demo/
@@ -91,6 +94,7 @@ ros-course-lab/
 - [实验四：TF 坐标变换 Demo](src/tf_demo/README.md)
 - [实验五：传感器仿真与机器人运动 Demo](src/sensor_robot_sim/README.md)
 - [实验六：语音识别与自主导航补充代码](src/lab6_navigation_demo/README.md)
+- [实验七、八：实验报告目录](docs/reports/README.md)
 
 ## 快速开始
 
@@ -117,6 +121,7 @@ roscore
 - TF 实验说明见 [src/tf_demo/README.md](src/tf_demo/README.md)
 - 传感器仿真实验说明见 [src/sensor_robot_sim/README.md](src/sensor_robot_sim/README.md)
 - 语音导航实验说明见 [src/lab6_navigation_demo/README.md](src/lab6_navigation_demo/README.md)
+- 实验七、八的报告说明见 [docs/reports/README.md](docs/reports/README.md)
 
 ## 实验清单
 
@@ -128,6 +133,8 @@ roscore
 | 实验四 | TF 坐标变换 | `src/tf_demo` | `TransformBroadcaster`、`TransformListener`、`lookupTransform()` |
 | 实验五 | 传感器仿真与机器人运动 | `src/sensor_robot_sim` | `URDF`、Gazebo、`LaserScan`、闭环避障 |
 | 实验六 | 机器人语音识别和自主导航综合实例 | `src/lab6_navigation_demo` | `map_server`、`amcl`、`move_base`、命名航点、语音结果映射 |
+| 实验七 | OpenCV 平面视觉检测仿真 | `docs/reports/2315302125 崔子霖7.docx` | `OpenCV`、`CvBridge`、HSV 阈值分割、颜色目标跟随、人脸检测 |
+| 实验八 | 机器人三维视觉仿真 | `docs/reports/2315302125 崔子霖8.docx` | 点云检测、`/wpb_home/objects_3d`、目标坐标、机械臂抓取 |
 
 ## 当前实验说明
 
@@ -177,4 +184,9 @@ roscore
 
 ## 课程实验报告
 
-实验报告模板和已完成报告保存在 `docs/reports/` 目录中，可用于课程提交或后续整理。当前已经包含实验 1 到实验 6 的报告，其中实验六报告与补充代码、地图文件已经同步到仓库。
+实验报告模板和已完成报告保存在 `docs/reports/` 目录中，可用于课程提交或后续整理。当前已经包含实验 1 到实验 8 的报告，其中实验七、实验八为 Ubuntu ROS 仿真环境中完成后整理出的报告材料：
+
+- 实验七：使用 OpenCV 来进行平面视觉检测仿真，包含绿色球跟随和人脸检测。
+- 实验八：机器人三维视觉仿真，包含三维点云目标检测、坐标读取和机械臂抓取验证。
+
+报告目录说明见 [docs/reports/README.md](docs/reports/README.md)。
