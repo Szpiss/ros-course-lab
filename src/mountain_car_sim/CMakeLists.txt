@@ -19,8 +19,10 @@ include_directories(
 
 catkin_install_python(PROGRAMS
   scripts/autonomous_flag_nav.py
+  scripts/road_follow_car.py
   scripts/reset_spawn_model.py
   scripts/simple_car_controller.py
+  scripts/uav_patrol_demo.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

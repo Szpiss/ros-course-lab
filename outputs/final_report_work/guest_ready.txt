@@ -1,0 +1,4 @@
+cuing
+Mon 08 Jun 2026 10:05:55 PM CST
+/usr/bin/gnome-screenshot
+/usr/bin/xdotool

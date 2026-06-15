@@ -1,0 +1,42 @@
+X11:
+total 0
+srwxrwxrwx 1 root root 0 Jun  8 22:05 X0
+srwxrwxrwx 1 root root 0 Jun  8 22:05 X1
+sessions:
+SESSION  UID USER  SEAT  TTY 
+      2 1000 cuing seat0 tty2
+     c2  128 gdm   seat0 tty1
+
+2 sessions listed.
+user1000:
+total 4
+srw-rw-rw- 1 cuing cuing   0 Jun  8 22:05 bus
+drwx------ 3 cuing cuing  60 Jun  8 22:05 dbus-1
+drwx------ 2 cuing cuing  60 Jun  8 22:05 dconf
+drwx--x--x 2 cuing cuing  60 Jun  8 22:05 gdm
+prw-rw-r-- 1 cuing cuing   0 Jun  8 22:05 gnome-session-leader-fifo
+drwx------ 3 cuing cuing  60 Jun  8 22:05 gnome-shell
+-rw-rw-r-- 1 cuing cuing   0 Jun  8 22:05 gnome-shell-disable-extensions
+drwx------ 2 cuing cuing 140 Jun  8 22:05 gnupg
+dr-x------ 2 cuing cuing   0 Jun  8 22:05 gvfs
+-rw------- 1 cuing cuing 318 Jun  8 22:05 ICEauthority
+d--------- 3 cuing cuing 160 Jun  8 22:05 inaccessible
+drwx------ 2 cuing cuing 100 Jun  8 22:05 keyring
+srw-rw-rw- 1 cuing cuing   0 Jun  8 22:05 pk-debconf-socket
+drwx------ 2 cuing cuing  80 Jun  8 22:05 pulse
+srw-rw-rw- 1 cuing cuing   0 Jun  8 22:05 snapd-session-agent.socket
+drwxr-xr-x 3 cuing cuing 100 Jun  8 22:05 systemd
+ps:
+gdm         2388    2383  0 22:05 tty1     00:00:00 /usr/lib/gdm3/gdm-x-session dbus-run-session -- gnome-session --autostart /usr/share/gdm/greeter/autostart
+root        2390    2388  2 22:05 tty1     00:00:01 /usr/lib/xorg/Xorg vt1 -displayfd 3 -auth /run/user/128/gdm/Xauthority -background none -noreset -keeptty -verbose 3
+gdm         2399    2388  0 22:05 tty1     00:00:00 dbus-run-session -- gnome-session --autostart /usr/share/gdm/greeter/autostart
+gdm         2401    2399  0 22:05 tty1     00:00:00 /usr/libexec/gnome-session-binary --systemd --autostart /usr/share/gdm/greeter/autostart
+gdm         2489       1  0 22:05 tty1     00:00:00 /usr/libexec/at-spi2-registryd --use-gnome-session
+cuing       2893    2752  0 22:05 tty2     00:00:00 /usr/lib/gdm3/gdm-x-session --run-script env GNOME_SHELL_SESSION_MODE=ubuntu /usr/bin/gnome-session --systemd --session=ubuntu
+root        2895    2893  1 22:05 tty2     00:00:00 /usr/lib/xorg/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -background none -noreset -keeptty -verbose 3
+cuing       2901    2893  0 22:05 tty2     00:00:00 /usr/libexec/gnome-session-binary --systemd --systemd --session=ubuntu
+cuing       2970    2901  0 22:05 ?        00:00:00 /usr/bin/ssh-agent /usr/bin/im-launch env GNOME_SHELL_SESSION_MODE=ubuntu /usr/bin/gnome-session --systemd --session=ubuntu
+cuing       3017    2868  0 22:05 ?        00:00:00 /usr/libexec/gnome-session-ctl --monitor
+cuing       3024    2868  0 22:05 ?        00:00:00 /usr/libexec/gnome-session-binary --systemd-service --session=ubuntu
+cuing       3106    2868  0 22:05 ?        00:00:00 /usr/libexec/at-spi2-registryd --use-gnome-session
+cuing      13227   13212  0 22:06 ?        00:00:00 grep -E Xorg|wayland|gnome-session|gdm-x-session

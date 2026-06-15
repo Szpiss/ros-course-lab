@@ -1,0 +1,5 @@
+---LOG---
+tail: cannot open '/home/cuing/mountain_demo_launch.log' for reading: No such file or directory
+---MODELS---
+---ROSTOPIC---
+ERROR: Unable to communicate with master!

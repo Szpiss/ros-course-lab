@@ -1,0 +1,121 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="mountain_showcase_details">
+    <static>true</static>
+
+    <!-- Mountain-road guard rails near the start and the city connector. -->
+    <link name="trail_guard_rail_start_north">
+      <pose>-3.4 0.88 0.36 0 0 0.05</pose>
+      <visual name="rail"><geometry><box><size>2.25 0.08 0.13</size></box></geometry><material><ambient>0.55 0.34 0.18 1</ambient><diffuse>0.55 0.34 0.18 1</diffuse></material></visual>
+      <visual name="post_1"><pose>-0.85 0 -0.22 0 0 0</pose><geometry><box><size>0.09 0.09 0.44</size></box></geometry><material><ambient>0.35 0.22 0.12 1</ambient><diffuse>0.35 0.22 0.12 1</diffuse></material></visual>
+      <visual name="post_2"><pose>0 0 -0.22 0 0 0</pose><geometry><box><size>0.09 0.09 0.44</size></box></geometry><material><ambient>0.35 0.22 0.12 1</ambient><diffuse>0.35 0.22 0.12 1</diffuse></material></visual>
+      <visual name="post_3"><pose>0.85 0 -0.22 0 0 0</pose><geometry><box><size>0.09 0.09 0.44</size></box></geometry><material><ambient>0.35 0.22 0.12 1</ambient><diffuse>0.35 0.22 0.12 1</diffuse></material></visual>
+    </link>
+
+    <link name="trail_guard_rail_start_south">
+      <pose>-2.6 -0.88 0.42 0 0 -0.08</pose>
+      <visual name="rail"><geometry><box><size>2.10 0.08 0.13</size></box></geometry><material><ambient>0.55 0.34 0.18 1</ambient><diffuse>0.55 0.34 0.18 1</diffuse></material></visual>
+      <visual name="post_1"><pose>-0.78 0 -0.23 0 0 0</pose><geometry><box><size>0.09 0.09 0.46</size></box></geometry><material><ambient>0.35 0.22 0.12 1</ambient><diffuse>0.35 0.22 0.12 1</diffuse></material></visual>
+      <visual name="post_2"><pose>0 0 -0.23 0 0 0</pose><geometry><box><size>0.09 0.09 0.46</size></box></geometry><material><ambient>0.35 0.22 0.12 1</ambient><diffuse>0.35 0.22 0.12 1</diffuse></material></visual>
+      <visual name="post_3"><pose>0.78 0 -0.23 0 0 0</pose><geometry><box><size>0.09 0.09 0.46</size></box></geometry><material><ambient>0.35 0.22 0.12 1</ambient><diffuse>0.35 0.22 0.12 1</diffuse></material></visual>
+    </link>
+
+    <link name="trail_guard_rail_top">
+      <pose>2.85 0.78 1.08 0 0 -0.12</pose>
+      <visual name="rail"><geometry><box><size>1.95 0.08 0.13</size></box></geometry><material><ambient>0.55 0.34 0.18 1</ambient><diffuse>0.55 0.34 0.18 1</diffuse></material></visual>
+      <visual name="post_1"><pose>-0.70 0 -0.22 0 0 0</pose><geometry><box><size>0.09 0.09 0.44</size></box></geometry><material><ambient>0.35 0.22 0.12 1</ambient><diffuse>0.35 0.22 0.12 1</diffuse></material></visual>
+      <visual name="post_2"><pose>0 0 -0.22 0 0 0</pose><geometry><box><size>0.09 0.09 0.44</size></box></geometry><material><ambient>0.35 0.22 0.12 1</ambient><diffuse>0.35 0.22 0.12 1</diffuse></material></visual>
+      <visual name="post_3"><pose>0.70 0 -0.22 0 0 0</pose><geometry><box><size>0.09 0.09 0.44</size></box></geometry><material><ambient>0.35 0.22 0.12 1</ambient><diffuse>0.35 0.22 0.12 1</diffuse></material></visual>
+    </link>
+
+    <!-- Trailhead gate and mountain direction signs. -->
+    <link name="trailhead_gate">
+      <pose>-4.65 0 0.18 0 0 0</pose>
+      <visual name="left_post"><pose>0 0.58 0.44 0 0 0</pose><geometry><cylinder><radius>0.055</radius><length>0.88</length></cylinder></geometry><material><ambient>0.28 0.17 0.09 1</ambient><diffuse>0.28 0.17 0.09 1</diffuse></material></visual>
+      <visual name="right_post"><pose>0 -0.58 0.44 0 0 0</pose><geometry><cylinder><radius>0.055</radius><length>0.88</length></cylinder></geometry><material><ambient>0.28 0.17 0.09 1</ambient><diffuse>0.28 0.17 0.09 1</diffuse></material></visual>
+      <visual name="top_beam"><pose>0 0 0.88 0 1.5708 0</pose><geometry><cylinder><radius>0.045</radius><length>1.25</length></cylinder></geometry><material><ambient>0.28 0.17 0.09 1</ambient><diffuse>0.28 0.17 0.09 1</diffuse></material></visual>
+      <visual name="sign_board"><pose>0.02 0 0.72 0 0 0</pose><geometry><box><size>0.10 0.86 0.24</size></box></geometry><material><ambient>0.95 0.70 0.22 1</ambient><diffuse>0.95 0.70 0.22 1</diffuse></material></visual>
+      <visual name="arrow"><pose>0.08 0.20 0.72 0 0 0</pose><geometry><box><size>0.08 0.34 0.08</size></box></geometry><material><ambient>0.08 0.08 0.08 1</ambient><diffuse>0.08 0.08 0.08 1</diffuse></material></visual>
+    </link>
+
+    <link name="warning_sign_rocks">
+      <pose>-0.55 1.42 0.52 0 0 -0.35</pose>
+      <visual name="pole"><pose>0 0 0.28 0 0 0</pose><geometry><cylinder><radius>0.035</radius><length>0.56</length></cylinder></geometry><material><ambient>0.20 0.20 0.18 1</ambient><diffuse>0.20 0.20 0.18 1</diffuse></material></visual>
+      <visual name="triangle_base"><pose>0 0 0.68 0 0 0</pose><geometry><box><size>0.56 0.07 0.40</size></box></geometry><material><ambient>1.0 0.76 0.06 1</ambient><diffuse>1.0 0.76 0.06 1</diffuse></material></visual>
+      <visual name="symbol"><pose>0 -0.04 0.68 0 0 0</pose><geometry><box><size>0.20 0.04 0.10</size></box></geometry><material><ambient>0.10 0.08 0.04 1</ambient><diffuse>0.10 0.08 0.04 1</diffuse></material></visual>
+    </link>
+
+    <link name="city_direction_sign">
+      <pose>4.55 -0.95 1.08 0 0 0.25</pose>
+      <visual name="pole"><pose>0 0 -0.30 0 0 0</pose><geometry><cylinder><radius>0.04</radius><length>0.86</length></cylinder></geometry><material><ambient>0.20 0.20 0.20 1</ambient><diffuse>0.20 0.20 0.20 1</diffuse></material></visual>
+      <visual name="board"><pose>0 0 0.18 0 0 0</pose><geometry><box><size>0.70 0.08 0.26</size></box></geometry><material><ambient>0.05 0.30 0.85 1</ambient><diffuse>0.05 0.30 0.85 1</diffuse></material></visual>
+      <visual name="arrow"><pose>0.18 -0.05 0.18 0 0 0</pose><geometry><box><size>0.32 0.04 0.08</size></box></geometry><material><ambient>0.96 0.96 0.88 1</ambient><diffuse>0.96 0.96 0.88 1</diffuse></material></visual>
+    </link>
+
+    <!-- Scenic lookout and small camp make the mountain feel inhabited. -->
+    <link name="lookout_platform">
+      <pose>1.35 -1.55 0.86 0 0 0.12</pose>
+      <visual name="deck"><geometry><box><size>1.15 0.82 0.10</size></box></geometry><material><ambient>0.42 0.25 0.12 1</ambient><diffuse>0.42 0.25 0.12 1</diffuse></material></visual>
+      <visual name="post_1"><pose>-0.45 -0.32 -0.28 0 0 0</pose><geometry><box><size>0.08 0.08 0.56</size></box></geometry><material><ambient>0.26 0.16 0.09 1</ambient><diffuse>0.26 0.16 0.09 1</diffuse></material></visual>
+      <visual name="post_2"><pose>0.45 -0.32 -0.28 0 0 0</pose><geometry><box><size>0.08 0.08 0.56</size></box></geometry><material><ambient>0.26 0.16 0.09 1</ambient><diffuse>0.26 0.16 0.09 1</diffuse></material></visual>
+      <visual name="post_3"><pose>-0.45 0.32 -0.28 0 0 0</pose><geometry><box><size>0.08 0.08 0.56</size></box></geometry><material><ambient>0.26 0.16 0.09 1</ambient><diffuse>0.26 0.16 0.09 1</diffuse></material></visual>
+      <visual name="post_4"><pose>0.45 0.32 -0.28 0 0 0</pose><geometry><box><size>0.08 0.08 0.56</size></box></geometry><material><ambient>0.26 0.16 0.09 1</ambient><diffuse>0.26 0.16 0.09 1</diffuse></material></visual>
+      <visual name="front_rail"><pose>0 -0.42 0.18 0 0 0</pose><geometry><box><size>1.05 0.06 0.10</size></box></geometry><material><ambient>0.32 0.20 0.10 1</ambient><diffuse>0.32 0.20 0.10 1</diffuse></material></visual>
+      <visual name="side_rail"><pose>0.58 0 0.18 0 0 0</pose><geometry><box><size>0.06 0.76 0.10</size></box></geometry><material><ambient>0.32 0.20 0.10 1</ambient><diffuse>0.32 0.20 0.10 1</diffuse></material></visual>
+    </link>
+
+    <link name="mountain_camp">
+      <pose>-1.85 -1.45 0.36 0 0 0.20</pose>
+      <visual name="tent_body"><pose>0 0 0.24 0 0 0</pose><geometry><box><size>0.90 0.70 0.48</size></box></geometry><material><ambient>0.08 0.42 0.18 1</ambient><diffuse>0.08 0.42 0.18 1</diffuse></material></visual>
+      <visual name="tent_roof"><pose>0 0 0.55 0 0 0</pose><geometry><box><size>0.98 0.78 0.16</size></box></geometry><material><ambient>0.04 0.28 0.12 1</ambient><diffuse>0.04 0.28 0.12 1</diffuse></material></visual>
+      <visual name="door"><pose>0.46 0 0.18 0 0 0</pose><geometry><box><size>0.04 0.30 0.34</size></box></geometry><material><ambient>0.95 0.82 0.30 1</ambient><diffuse>0.95 0.82 0.30 1</diffuse></material></visual>
+      <visual name="supply_box"><pose>-0.78 0.38 0.10 0 0 0</pose><geometry><box><size>0.38 0.30 0.20</size></box></geometry><material><ambient>0.55 0.32 0.12 1</ambient><diffuse>0.55 0.32 0.12 1</diffuse></material></visual>
+      <visual name="campfire_base"><pose>-0.72 -0.44 0.06 0 0 0</pose><geometry><cylinder><radius>0.22</radius><length>0.08</length></cylinder></geometry><material><ambient>0.18 0.12 0.08 1</ambient><diffuse>0.18 0.12 0.08 1</diffuse></material></visual>
+      <visual name="campfire_flame"><pose>-0.72 -0.44 0.22 0 0 0</pose><geometry><sphere><radius>0.16</radius></sphere></geometry><material><ambient>1.0 0.38 0.05 1</ambient><diffuse>1.0 0.38 0.05 1</diffuse></material></visual>
+    </link>
+
+    <!-- Vegetation and small stones around the mountain road. -->
+    <link name="pine_tree_1">
+      <pose>-3.7 1.85 0.18 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 0.32 0 0 0</pose><geometry><cylinder><radius>0.08</radius><length>0.64</length></cylinder></geometry><material><ambient>0.28 0.16 0.08 1</ambient><diffuse>0.28 0.16 0.08 1</diffuse></material></visual>
+      <visual name="crown_low"><pose>0 0 0.78 0 0 0</pose><geometry><sphere><radius>0.36</radius></sphere></geometry><material><ambient>0.05 0.30 0.12 1</ambient><diffuse>0.05 0.30 0.12 1</diffuse></material></visual>
+      <visual name="crown_top"><pose>0 0 1.10 0 0 0</pose><geometry><sphere><radius>0.26</radius></sphere></geometry><material><ambient>0.06 0.36 0.14 1</ambient><diffuse>0.06 0.36 0.14 1</diffuse></material></visual>
+    </link>
+
+    <link name="pine_tree_2">
+      <pose>0.15 -2.05 0.48 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 0.34 0 0 0</pose><geometry><cylinder><radius>0.08</radius><length>0.68</length></cylinder></geometry><material><ambient>0.28 0.16 0.08 1</ambient><diffuse>0.28 0.16 0.08 1</diffuse></material></visual>
+      <visual name="crown_low"><pose>0 0 0.83 0 0 0</pose><geometry><sphere><radius>0.38</radius></sphere></geometry><material><ambient>0.05 0.30 0.12 1</ambient><diffuse>0.05 0.30 0.12 1</diffuse></material></visual>
+      <visual name="crown_top"><pose>0 0 1.18 0 0 0</pose><geometry><sphere><radius>0.27</radius></sphere></geometry><material><ambient>0.06 0.36 0.14 1</ambient><diffuse>0.06 0.36 0.14 1</diffuse></material></visual>
+    </link>
+
+    <link name="pine_tree_3">
+      <pose>3.85 -1.35 0.78 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 0.36 0 0 0</pose><geometry><cylinder><radius>0.08</radius><length>0.72</length></cylinder></geometry><material><ambient>0.28 0.16 0.08 1</ambient><diffuse>0.28 0.16 0.08 1</diffuse></material></visual>
+      <visual name="crown_low"><pose>0 0 0.90 0 0 0</pose><geometry><sphere><radius>0.40</radius></sphere></geometry><material><ambient>0.05 0.30 0.12 1</ambient><diffuse>0.05 0.30 0.12 1</diffuse></material></visual>
+      <visual name="crown_top"><pose>0 0 1.24 0 0 0</pose><geometry><sphere><radius>0.29</radius></sphere></geometry><material><ambient>0.06 0.36 0.14 1</ambient><diffuse>0.06 0.36 0.14 1</diffuse></material></visual>
+    </link>
+
+    <link name="shrub_cluster">
+      <pose>2.0 1.55 0.78 0 0 0</pose>
+      <visual name="bush_1"><pose>-0.25 0 0.10 0 0 0</pose><geometry><sphere><radius>0.18</radius></sphere></geometry><material><ambient>0.12 0.42 0.12 1</ambient><diffuse>0.12 0.42 0.12 1</diffuse></material></visual>
+      <visual name="bush_2"><pose>0.00 0.10 0.12 0 0 0</pose><geometry><sphere><radius>0.22</radius></sphere></geometry><material><ambient>0.10 0.36 0.10 1</ambient><diffuse>0.10 0.36 0.10 1</diffuse></material></visual>
+      <visual name="bush_3"><pose>0.28 -0.04 0.10 0 0 0</pose><geometry><sphere><radius>0.18</radius></sphere></geometry><material><ambient>0.14 0.44 0.14 1</ambient><diffuse>0.14 0.44 0.14 1</diffuse></material></visual>
+    </link>
+
+    <link name="loose_rocks">
+      <pose>0.95 1.22 0.68 0 0 0</pose>
+      <visual name="stone_1"><pose>-0.26 0 0.07 0 0 0</pose><geometry><sphere><radius>0.13</radius></sphere></geometry><material><ambient>0.30 0.30 0.28 1</ambient><diffuse>0.30 0.30 0.28 1</diffuse></material></visual>
+      <visual name="stone_2"><pose>0.03 0.12 0.09 0 0 0</pose><geometry><sphere><radius>0.16</radius></sphere></geometry><material><ambient>0.34 0.34 0.32 1</ambient><diffuse>0.34 0.34 0.32 1</diffuse></material></visual>
+      <visual name="stone_3"><pose>0.32 -0.08 0.06 0 0 0</pose><geometry><sphere><radius>0.12</radius></sphere></geometry><material><ambient>0.26 0.26 0.24 1</ambient><diffuse>0.26 0.26 0.24 1</diffuse></material></visual>
+    </link>
+
+    <!-- A small wind sock helps show wind/air theme next to the mountain route. -->
+    <link name="mountain_windsock">
+      <pose>4.25 1.35 1.15 0 0 0.2</pose>
+      <visual name="pole"><pose>0 0 -0.35 0 0 0</pose><geometry><cylinder><radius>0.035</radius><length>1.05</length></cylinder></geometry><material><ambient>0.20 0.20 0.20 1</ambient><diffuse>0.20 0.20 0.20 1</diffuse></material></visual>
+      <visual name="sock_red"><pose>0.18 0 0.18 0 0 0</pose><geometry><box><size>0.32 0.12 0.10</size></box></geometry><material><ambient>0.95 0.08 0.05 1</ambient><diffuse>0.95 0.08 0.05 1</diffuse></material></visual>
+      <visual name="sock_white"><pose>0.46 0 0.18 0 0 0</pose><geometry><box><size>0.26 0.10 0.08</size></box></geometry><material><ambient>0.95 0.95 0.90 1</ambient><diffuse>0.95 0.95 0.90 1</diffuse></material></visual>
+    </link>
+  </model>
+</sdf>

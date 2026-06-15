@@ -1,0 +1,68 @@
+<launch>
+  <arg name="gui" default="true" />
+  <arg name="headless" default="false" />
+  <arg name="paused" default="false" />
+  <arg name="use_sim_time" default="true" />
+
+  <arg name="spawn_car" default="true" />
+  <arg name="start_car_controller" default="true" />
+  <arg name="start_uav_patrol" default="true" />
+
+  <arg name="car_x" default="6.5" />
+  <arg name="car_y" default="0.0" />
+  <arg name="car_z" default="0.45" />
+  <arg name="car_yaw" default="0.0" />
+
+  <arg name="air_model_name" default="patrol_airplane" />
+  <arg name="air_altitude" default="3.8" />
+  <arg name="air_speed" default="2.2" />
+
+  <!-- Let Gazebo resolve model://mountain_terrain, model://simple_city and model://simple_drone. -->
+  <env name="GAZEBO_MODEL_PATH" value="$(find mountain_car_sim)/models:$(optenv GAZEBO_MODEL_PATH)" />
+
+  <!-- Keep the existing Gazebo plugin path behavior for libgazebo_ros_planar_move.so. -->
+  <env name="GAZEBO_PLUGIN_PATH" value="/opt/ros/noetic/lib:$(optenv GAZEBO_PLUGIN_PATH)" />
+
+  <!-- Start Gazebo Classic with the fused mountain + city + air demo world. -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find mountain_car_sim)/worlds/mountain_city_air_demo.world" />
+    <arg name="paused" value="$(arg paused)" />
+    <arg name="use_sim_time" value="$(arg use_sim_time)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="headless" value="$(arg headless)" />
+    <arg name="debug" value="false" />
+  </include>
+
+  <!-- Spawn the original Xacro/URDF mountain car on the road between the mountain and city. -->
+  <include if="$(arg spawn_car)" file="$(find mountain_car_sim)/launch/spawn_mountain_car.launch">
+    <arg name="x" value="$(arg car_x)" />
+    <arg name="y" value="$(arg car_y)" />
+    <arg name="z" value="$(arg car_z)" />
+    <arg name="yaw" value="$(arg car_yaw)" />
+  </include>
+
+  <!-- Ground car follows the visible city roads for presentation recording. -->
+  <node if="$(arg start_car_controller)"
+        name="road_follow_car"
+        pkg="mountain_car_sim" type="road_follow_car.py"
+        output="screen">
+    <param name="model_name" value="mountain_car" />
+    <param name="z" value="$(arg car_z)" />
+    <param name="speed" value="0.9" />
+  </node>
+
+  <!-- Stable display-level UAV patrol controlled through Gazebo set_model_state. -->
+  <node if="$(arg start_uav_patrol)"
+        name="uav_patrol_demo"
+        pkg="mountain_car_sim" type="uav_patrol_demo.py"
+        output="screen">
+    <param name="model_name" value="$(arg air_model_name)" />
+    <param name="center_x" value="11.0" />
+    <param name="center_y" value="0.0" />
+    <param name="radius_x" value="4.0" />
+    <param name="radius_y" value="2.5" />
+    <param name="altitude" value="$(arg air_altitude)" />
+    <param name="speed" value="$(arg air_speed)" />
+    <param name="rate" value="25.0" />
+  </node>
+</launch>

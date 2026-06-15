@@ -1,0 +1,117 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="mountain_city_air_demo">
+    <!-- Keep the original conservative physics so the mountain car remains stable. -->
+    <physics name="default_physics" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>80</iters>
+          <sor>1.0</sor>
+        </solver>
+        <constraints>
+          <cfm>0.0</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>1.0</contact_max_correcting_vel>
+          <contact_surface_layer>0.001</contact_surface_layer>
+        </constraints>
+      </ode>
+    </physics>
+
+    <scene>
+      <ambient>0.48 0.50 0.52 1</ambient>
+      <background>0.68 0.82 0.96 1</background>
+      <shadows>true</shadows>
+    </scene>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Original mountain area. -->
+    <include>
+      <uri>model://mountain_terrain</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>rock_obstacle_left</name>
+      <uri>model://rock_obstacle</uri>
+      <pose>-1.2 1.15 0.18 0 0 0.35</pose>
+    </include>
+
+    <include>
+      <name>rock_obstacle_right</name>
+      <uri>model://rock_obstacle</uri>
+      <pose>1.2 -1.05 0.58 0 0 -0.55</pose>
+    </include>
+
+    <include>
+      <name>rock_obstacle_top</name>
+      <uri>model://rock_obstacle</uri>
+      <pose>3.0 0.95 0.92 0 0 0.85</pose>
+    </include>
+
+    <include>
+      <uri>model://checkpoint_flag</uri>
+      <pose>4.7 0.0 1.05 0 0 0</pose>
+    </include>
+
+    <!-- Decorative mountain layer: guard rails, signs, lookout platform, camp and vegetation. -->
+    <include>
+      <name>mountain_showcase_details</name>
+      <uri>model://mountain_showcase_details</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <!-- Blended transition from mountain trail to city street. -->
+    <include>
+      <name>mountain_city_transition</name>
+      <uri>model://mountain_city_transition</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <!-- New city block: roads, buildings, sidewalks, lights, trees and signs. -->
+    <include>
+      <name>simple_city</name>
+      <uri>model://simple_city</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <!-- Camera-facing city details: storefronts, billboard, gantry, parking and flight markers. -->
+    <include>
+      <name>showcase_city_details</name>
+      <uri>model://showcase_city_details</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <!-- Lightweight UAV kept as a secondary aerial object. -->
+    <include>
+      <name>city_patrol_drone</name>
+      <uri>model://simple_drone</uri>
+      <pose>7.0 0.0 10.0 0 0 0</pose>
+    </include>
+
+    <!-- Larger fixed-wing aircraft for an obvious answer-defense visual. -->
+    <include>
+      <name>patrol_airplane</name>
+      <uri>model://simple_airplane</uri>
+      <pose>12.5 -2.0 3.8 0 0 0</pose>
+    </include>
+
+    <!-- Camera sees the mountain, transition road, city details and the low-aircraft path. -->
+    <gui fullscreen="0">
+      <camera name="user_camera">
+        <pose>7.2 -17.5 8.4 0 0.44 0.44</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+  </world>
+</sdf>

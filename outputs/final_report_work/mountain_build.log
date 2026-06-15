@@ -1,0 +1,52 @@
+-- Using CATKIN_DEVEL_PREFIX: /home/cuing/catkin_ws/devel
+-- Using CMAKE_PREFIX_PATH: /opt/ros/noetic
+-- This workspace overlays: /opt/ros/noetic
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Using Debian Python package layout
+-- Using empy: /usr/lib/python3/dist-packages/em.py
+-- Using CATKIN_ENABLE_TESTING: ON
+-- Call enable_testing()
+-- Using CATKIN_TEST_RESULTS_DIR: /home/cuing/catkin_ws/build/test_results
+-- Forcing gtest/gmock from source, though one was otherwise available.
+-- Found gtest sources under '/usr/src/googletest': gtests will be built
+-- Found gmock sources under '/usr/src/googletest': gmock will be built
+-- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+-- Using Python nosetests: /usr/bin/nosetests3
+-- catkin 0.8.12
+-- BUILD_SHARED_LIBS is on
+-- BUILD_SHARED_LIBS is on
+-- Using CATKIN_WHITELIST_PACKAGES: mountain_car_sim
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- ~~  traversing 1 packages in topological order:
+-- ~~  - mountain_car_sim
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- +++ processing catkin package: 'mountain_car_sim'
+-- ==> add_subdirectory(mountain_car_sim)
+WARNING: package 'gazebo_msgs' is deprecated (This package has been deprecated as of January 2025 with Gazebo classic 11 reaching
+      end-of-life. Users are highly encouraged to migrate to the new Gazebo
+      using our migration guides (https://gazebosim.org/docs/latest/gazebo_classic_migration))
+WARNING: package 'gazebo_ros' is deprecated (This package has been deprecated as of January 2025 with Gazebo classic 11 reaching
+      end-of-life. Users are highly encouraged to migrate to the new Gazebo
+      using our migration guides (https://gazebosim.org/docs/latest/gazebo_classic_migration))
+-- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+-- Installing devel-space wrapper /home/cuing/catkin_ws/src/mountain_car_sim/scripts/autonomous_flag_nav.py to /home/cuing/catkin_ws/devel/lib/mountain_car_sim
+-- Installing devel-space wrapper /home/cuing/catkin_ws/src/mountain_car_sim/scripts/road_follow_car.py to /home/cuing/catkin_ws/devel/lib/mountain_car_sim
+-- Installing devel-space wrapper /home/cuing/catkin_ws/src/mountain_car_sim/scripts/reset_spawn_model.py to /home/cuing/catkin_ws/devel/lib/mountain_car_sim
+-- Installing devel-space wrapper /home/cuing/catkin_ws/src/mountain_car_sim/scripts/simple_car_controller.py to /home/cuing/catkin_ws/devel/lib/mountain_car_sim
+-- Installing devel-space wrapper /home/cuing/catkin_ws/src/mountain_car_sim/scripts/uav_patrol_demo.py to /home/cuing/catkin_ws/devel/lib/mountain_car_sim
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/cuing/catkin_ws/build
+Built target mountain_car_sim_xacro_generated_to_devel_space_
+Base path: /home/cuing/catkin_ws
+Source space: /home/cuing/catkin_ws/src
+Build space: /home/cuing/catkin_ws/build
+Devel space: /home/cuing/catkin_ws/devel
+Install space: /home/cuing/catkin_ws/install
+####
+#### Running command: "cmake /home/cuing/catkin_ws/src -DCATKIN_WHITELIST_PACKAGES=mountain_car_sim -DCATKIN_DEVEL_PREFIX=/home/cuing/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/cuing/catkin_ws/install -G Unix Makefiles" in "/home/cuing/catkin_ws/build"
+####
+####
+#### Running command: "make -j4 -l4" in "/home/cuing/catkin_ws/build"
+####

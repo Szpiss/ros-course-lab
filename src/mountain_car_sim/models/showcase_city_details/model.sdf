@@ -1,0 +1,98 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="showcase_city_details">
+    <static>true</static>
+
+    <!-- South-facing storefront row: placed toward the default camera for immediate visual impact. -->
+    <link name="storefront_cafe">
+      <pose>8.7 -2.65 0.55 0 0 0</pose>
+      <collision name="collision"><geometry><box><size>1.35 0.32 1.10</size></box></geometry></collision>
+      <visual name="wall"><geometry><box><size>1.35 0.32 1.10</size></box></geometry><material><ambient>0.72 0.42 0.28 1</ambient><diffuse>0.72 0.42 0.28 1</diffuse></material></visual>
+      <visual name="window_left"><pose>-0.36 -0.18 0.12 0 0 0</pose><geometry><box><size>0.32 0.04 0.42</size></box></geometry><material><ambient>0.70 0.92 1.0 1</ambient><diffuse>0.70 0.92 1.0 1</diffuse></material></visual>
+      <visual name="window_right"><pose>0.36 -0.18 0.12 0 0 0</pose><geometry><box><size>0.32 0.04 0.42</size></box></geometry><material><ambient>0.70 0.92 1.0 1</ambient><diffuse>0.70 0.92 1.0 1</diffuse></material></visual>
+      <visual name="awning"><pose>0 -0.28 0.38 0 0 0</pose><geometry><box><size>1.55 0.18 0.14</size></box></geometry><material><ambient>0.95 0.12 0.08 1</ambient><diffuse>0.95 0.12 0.08 1</diffuse></material></visual>
+      <visual name="sign"><pose>0 -0.22 0.86 0 0 0</pose><geometry><box><size>1.10 0.06 0.20</size></box></geometry><material><ambient>1.0 0.82 0.08 1</ambient><diffuse>1.0 0.82 0.08 1</diffuse></material></visual>
+    </link>
+
+    <link name="storefront_market">
+      <pose>10.25 -2.65 0.65 0 0 0</pose>
+      <collision name="collision"><geometry><box><size>1.45 0.34 1.30</size></box></geometry></collision>
+      <visual name="wall"><geometry><box><size>1.45 0.34 1.30</size></box></geometry><material><ambient>0.34 0.56 0.40 1</ambient><diffuse>0.34 0.56 0.40 1</diffuse></material></visual>
+      <visual name="glass"><pose>0 -0.20 0.02 0 0 0</pose><geometry><box><size>1.05 0.04 0.62</size></box></geometry><material><ambient>0.56 0.86 1.0 1</ambient><diffuse>0.56 0.86 1.0 1</diffuse></material></visual>
+      <visual name="door"><pose>0 -0.23 -0.36 0 0 0</pose><geometry><box><size>0.28 0.05 0.55</size></box></geometry><material><ambient>0.08 0.10 0.12 1</ambient><diffuse>0.08 0.10 0.12 1</diffuse></material></visual>
+      <visual name="awning"><pose>0 -0.30 0.52 0 0 0</pose><geometry><box><size>1.68 0.22 0.16</size></box></geometry><material><ambient>0.08 0.30 0.95 1</ambient><diffuse>0.08 0.30 0.95 1</diffuse></material></visual>
+      <visual name="roof_trim"><pose>0 -0.18 0.76 0 0 0</pose><geometry><box><size>1.42 0.06 0.14</size></box></geometry><material><ambient>0.98 0.92 0.68 1</ambient><diffuse>0.98 0.92 0.68 1</diffuse></material></visual>
+    </link>
+
+    <link name="storefront_clinic">
+      <pose>11.95 -2.65 0.58 0 0 0</pose>
+      <collision name="collision"><geometry><box><size>1.35 0.32 1.16</size></box></geometry></collision>
+      <visual name="wall"><geometry><box><size>1.35 0.32 1.16</size></box></geometry><material><ambient>0.78 0.80 0.84 1</ambient><diffuse>0.78 0.80 0.84 1</diffuse></material></visual>
+      <visual name="window"><pose>-0.26 -0.18 0.05 0 0 0</pose><geometry><box><size>0.38 0.04 0.44</size></box></geometry><material><ambient>0.64 0.90 1.0 1</ambient><diffuse>0.64 0.90 1.0 1</diffuse></material></visual>
+      <visual name="door"><pose>0.36 -0.20 -0.28 0 0 0</pose><geometry><box><size>0.32 0.05 0.68</size></box></geometry><material><ambient>0.12 0.18 0.24 1</ambient><diffuse>0.12 0.18 0.24 1</diffuse></material></visual>
+      <visual name="cross_h"><pose>0 -0.22 0.64 0 0 0</pose><geometry><box><size>0.46 0.05 0.12</size></box></geometry><material><ambient>0.95 0.08 0.08 1</ambient><diffuse>0.95 0.08 0.08 1</diffuse></material></visual>
+      <visual name="cross_v"><pose>0 -0.23 0.64 0 0 0</pose><geometry><box><size>0.13 0.055 0.42</size></box></geometry><material><ambient>0.95 0.08 0.08 1</ambient><diffuse>0.95 0.08 0.08 1</diffuse></material></visual>
+    </link>
+
+    <!-- A large billboard and road gantry read well from a distance. -->
+    <link name="billboard">
+      <pose>14.1 -2.85 0 0 0 0</pose>
+      <visual name="post_left"><pose>-0.48 0 0.78 0 0 0</pose><geometry><cylinder><radius>0.055</radius><length>1.56</length></cylinder></geometry><material><ambient>0.18 0.18 0.18 1</ambient><diffuse>0.18 0.18 0.18 1</diffuse></material></visual>
+      <visual name="post_right"><pose>0.48 0 0.78 0 0 0</pose><geometry><cylinder><radius>0.055</radius><length>1.56</length></cylinder></geometry><material><ambient>0.18 0.18 0.18 1</ambient><diffuse>0.18 0.18 0.18 1</diffuse></material></visual>
+      <visual name="board"><pose>0 -0.02 1.72 0 0 0</pose><geometry><box><size>1.70 0.10 0.72</size></box></geometry><material><ambient>0.05 0.08 0.16 1</ambient><diffuse>0.05 0.08 0.16 1</diffuse></material></visual>
+      <visual name="stripe_top"><pose>0 -0.08 1.93 0 0 0</pose><geometry><box><size>1.45 0.04 0.11</size></box></geometry><material><ambient>1.0 0.30 0.12 1</ambient><diffuse>1.0 0.30 0.12 1</diffuse></material></visual>
+      <visual name="stripe_mid"><pose>0 -0.08 1.72 0 0 0</pose><geometry><box><size>1.25 0.04 0.11</size></box></geometry><material><ambient>0.10 0.75 1.0 1</ambient><diffuse>0.10 0.75 1.0 1</diffuse></material></visual>
+      <visual name="stripe_low"><pose>0 -0.08 1.51 0 0 0</pose><geometry><box><size>1.05 0.04 0.11</size></box></geometry><material><ambient>1.0 0.82 0.10 1</ambient><diffuse>1.0 0.82 0.10 1</diffuse></material></visual>
+    </link>
+
+    <link name="traffic_gantry">
+      <pose>13.6 0 0 0 0 0</pose>
+      <visual name="left_post"><pose>0 -1.35 0.95 0 0 0</pose><geometry><cylinder><radius>0.055</radius><length>1.9</length></cylinder></geometry><material><ambient>0.16 0.16 0.16 1</ambient><diffuse>0.16 0.16 0.16 1</diffuse></material></visual>
+      <visual name="right_post"><pose>0 1.35 0.95 0 0 0</pose><geometry><cylinder><radius>0.055</radius><length>1.9</length></cylinder></geometry><material><ambient>0.16 0.16 0.16 1</ambient><diffuse>0.16 0.16 0.16 1</diffuse></material></visual>
+      <visual name="beam"><pose>0 0 1.92 0 1.5708 0</pose><geometry><cylinder><radius>0.045</radius><length>2.75</length></cylinder></geometry><material><ambient>0.16 0.16 0.16 1</ambient><diffuse>0.16 0.16 0.16 1</diffuse></material></visual>
+      <visual name="left_signal"><pose>0 -0.45 1.72 0 0 0</pose><geometry><box><size>0.18 0.16 0.38</size></box></geometry><material><ambient>0.02 0.02 0.02 1</ambient><diffuse>0.02 0.02 0.02 1</diffuse></material></visual>
+      <visual name="right_signal"><pose>0 0.45 1.72 0 0 0</pose><geometry><box><size>0.18 0.16 0.38</size></box></geometry><material><ambient>0.02 0.02 0.02 1</ambient><diffuse>0.02 0.02 0.02 1</diffuse></material></visual>
+      <visual name="green_light"><pose>0 -0.45 1.62 0 0 0</pose><geometry><sphere><radius>0.055</radius></sphere></geometry><material><ambient>0.0 1.0 0.22 1</ambient><diffuse>0.0 1.0 0.22 1</diffuse></material></visual>
+      <visual name="red_light"><pose>0 0.45 1.82 0 0 0</pose><geometry><sphere><radius>0.055</radius></sphere></geometry><material><ambient>1.0 0.05 0.03 1</ambient><diffuse>1.0 0.05 0.03 1</diffuse></material></visual>
+    </link>
+
+    <!-- Parking and construction details. -->
+    <link name="parking_lot_markings">
+      <pose>17.8 -2.2 0.065 0 0 0</pose>
+      <visual name="base"><geometry><box><size>2.25 1.10 0.025</size></box></geometry><material><ambient>0.07 0.075 0.08 1</ambient><diffuse>0.07 0.075 0.08 1</diffuse></material></visual>
+      <visual name="line_1"><pose>-0.55 0 0.025 0 0 0</pose><geometry><box><size>0.05 0.95 0.018</size></box></geometry><material><ambient>0.95 0.95 0.82 1</ambient><diffuse>0.95 0.95 0.82 1</diffuse></material></visual>
+      <visual name="line_2"><pose>0.00 0 0.025 0 0 0</pose><geometry><box><size>0.05 0.95 0.018</size></box></geometry><material><ambient>0.95 0.95 0.82 1</ambient><diffuse>0.95 0.95 0.82 1</diffuse></material></visual>
+      <visual name="line_3"><pose>0.55 0 0.025 0 0 0</pose><geometry><box><size>0.05 0.95 0.018</size></box></geometry><material><ambient>0.95 0.95 0.82 1</ambient><diffuse>0.95 0.95 0.82 1</diffuse></material></visual>
+    </link>
+
+    <link name="construction_zone">
+      <pose>16.0 -0.95 0 0 0 0</pose>
+      <visual name="board"><pose>0.35 0 0.40 0 0 0</pose><geometry><box><size>0.78 0.08 0.22</size></box></geometry><material><ambient>1.0 0.55 0.08 1</ambient><diffuse>1.0 0.55 0.08 1</diffuse></material></visual>
+      <visual name="cone_1"><pose>-0.50 0 0.16 0 0 0</pose><geometry><cylinder><radius>0.13</radius><length>0.32</length></cylinder></geometry><material><ambient>1.0 0.28 0.02 1</ambient><diffuse>1.0 0.28 0.02 1</diffuse></material></visual>
+      <visual name="cone_2"><pose>0.00 0 0.16 0 0 0</pose><geometry><cylinder><radius>0.13</radius><length>0.32</length></cylinder></geometry><material><ambient>1.0 0.28 0.02 1</ambient><diffuse>1.0 0.28 0.02 1</diffuse></material></visual>
+      <visual name="cone_3"><pose>0.50 0 0.16 0 0 0</pose><geometry><cylinder><radius>0.13</radius><length>0.32</length></cylinder></geometry><material><ambient>1.0 0.28 0.02 1</ambient><diffuse>1.0 0.28 0.02 1</diffuse></material></visual>
+      <visual name="stripe"><pose>0.35 -0.05 0.43 0 0 0</pose><geometry><box><size>0.58 0.04 0.06</size></box></geometry><material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material></visual>
+    </link>
+
+    <!-- Low-altitude aircraft route markers: visible but small enough not to dominate. -->
+    <link name="flight_marker_city">
+      <pose>15.0 0.0 3.8 0 0 0</pose>
+      <visual name="marker"><geometry><sphere><radius>0.20</radius></sphere></geometry><material><ambient>0.10 0.85 1.0 0.75</ambient><diffuse>0.10 0.85 1.0 0.75</diffuse></material></visual>
+    </link>
+
+    <link name="flight_marker_mountain">
+      <pose>7.0 0.0 3.8 0 0 0</pose>
+      <visual name="marker"><geometry><sphere><radius>0.20</radius></sphere></geometry><material><ambient>0.10 0.85 1.0 0.75</ambient><diffuse>0.10 0.85 1.0 0.75</diffuse></material></visual>
+    </link>
+
+    <link name="flight_marker_south">
+      <pose>11.0 -2.5 3.8 0 0 0</pose>
+      <visual name="marker"><geometry><sphere><radius>0.20</radius></sphere></geometry><material><ambient>0.10 0.85 1.0 0.75</ambient><diffuse>0.10 0.85 1.0 0.75</diffuse></material></visual>
+    </link>
+
+    <link name="flight_marker_north">
+      <pose>11.0 2.5 3.8 0 0 0</pose>
+      <visual name="marker"><geometry><sphere><radius>0.20</radius></sphere></geometry><material><ambient>0.10 0.85 1.0 0.75</ambient><diffuse>0.10 0.85 1.0 0.75</diffuse></material></visual>
+    </link>
+  </model>
+</sdf>

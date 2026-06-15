@@ -6,14 +6,38 @@
 支持两种模式：
 - keyboard：WASD 手动控制，适合课堂演示；
 - auto：前进、左转、再前进，适合无人值守录屏。
+
+支持两种驱动后端：
+- cmd_vel：只发布 /cmd_vel，适合 Gazebo 运动插件已安装的环境；
+- model_state：同时发布 /cmd_vel，并通过 /gazebo/set_model_state 稳定移动模型。
 """
 
+import math
 import select
 import sys
 import termios
 import tty
 import rospy
+from gazebo_msgs.msg import ModelState, ModelStates
+from gazebo_msgs.srv import SetModelState
 from geometry_msgs.msg import Twist
+from geometry_msgs.msg import Quaternion
+
+
+def yaw_to_quaternion(yaw):
+    half_yaw = yaw * 0.5
+    quat = Quaternion()
+    quat.x = 0.0
+    quat.y = 0.0
+    quat.z = math.sin(half_yaw)
+    quat.w = math.cos(half_yaw)
+    return quat
+
+
+def yaw_from_quaternion(quat):
+    siny_cosp = 2.0 * (quat.w * quat.z + quat.x * quat.y)
+    cosy_cosp = 1.0 - 2.0 * (quat.y * quat.y + quat.z * quat.z)
+    return math.atan2(siny_cosp, cosy_cosp)
 
 
 class SimpleCarController:
@@ -22,6 +46,9 @@ class SimpleCarController:
         self.cmd_pub = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
 
         self.mode = rospy.get_param("~mode", "keyboard")
+        self.drive_backend = rospy.get_param("~drive_backend", "cmd_vel")
+        self.model_name = rospy.get_param("~model_name", "mountain_car")
+        self.fixed_z = rospy.get_param("~fixed_z", 0.45)
         self.forward_speed = rospy.get_param("~forward_speed", 0.45)
         self.backward_speed = rospy.get_param("~backward_speed", -0.30)
         self.turn_speed = rospy.get_param("~turn_speed", 0.65)
@@ -29,6 +56,21 @@ class SimpleCarController:
         self.turn_duration = rospy.get_param("~turn_duration", 2.0)
         self.rate_hz = rospy.get_param("~rate", 10.0)
         self.key_timeout = rospy.get_param("~key_timeout", 0.15)
+        self.model_pose = None
+        self.last_step_time = None
+        self.set_model_state = None
+
+        if self.drive_backend == "model_state":
+            rospy.Subscriber("/gazebo/model_states", ModelStates, self.state_callback)
+            rospy.loginfo("等待 Gazebo set_model_state 服务，用稳定后端驱动小车模型...")
+            rospy.wait_for_service("/gazebo/set_model_state")
+            self.set_model_state = rospy.ServiceProxy("/gazebo/set_model_state", SetModelState)
+
+    def state_callback(self, msg):
+        for name, pose in zip(msg.name, msg.pose):
+            if name == self.model_name:
+                self.model_pose = pose
+                return
 
     @staticmethod
     def make_twist(linear_x=0.0, angular_z=0.0):
@@ -38,7 +80,53 @@ class SimpleCarController:
         return cmd
 
     def publish_cmd(self, linear_x=0.0, angular_z=0.0):
-        self.cmd_pub.publish(self.make_twist(linear_x, angular_z))
+        cmd = self.make_twist(linear_x, angular_z)
+        self.cmd_pub.publish(cmd)
+
+        if self.drive_backend == "model_state":
+            self.step_model_state(cmd)
+
+    def wait_for_model_pose(self):
+        if self.drive_backend != "model_state":
+            return True
+
+        rate = rospy.Rate(self.rate_hz)
+        rospy.loginfo("等待 Gazebo 中出现模型 %s ...", self.model_name)
+        while not rospy.is_shutdown() and self.model_pose is None:
+            rate.sleep()
+        self.last_step_time = rospy.Time.now()
+        return self.model_pose is not None
+
+    def step_model_state(self, cmd):
+        if self.model_pose is None or self.set_model_state is None:
+            return
+
+        now = rospy.Time.now()
+        if self.last_step_time is None:
+            self.last_step_time = now
+            return
+
+        dt = (now - self.last_step_time).to_sec()
+        self.last_step_time = now
+        if dt <= 0.0 or dt > 0.5:
+            return
+
+        yaw = yaw_from_quaternion(self.model_pose.orientation)
+        yaw += cmd.angular.z * dt
+
+        state = ModelState()
+        state.model_name = self.model_name
+        state.reference_frame = "world"
+        state.pose.position.x = self.model_pose.position.x + cmd.linear.x * math.cos(yaw) * dt
+        state.pose.position.y = self.model_pose.position.y + cmd.linear.x * math.sin(yaw) * dt
+        state.pose.position.z = self.fixed_z
+        state.pose.orientation = yaw_to_quaternion(yaw)
+        state.twist = cmd
+
+        try:
+            self.set_model_state(state)
+        except rospy.ServiceException as exc:
+            rospy.logwarn_throttle(2.0, "set_model_state 驱动失败：%s", exc)
 
     def read_key(self):
         ready, _, _ = select.select([sys.stdin], [], [], self.key_timeout)
@@ -111,12 +199,18 @@ class SimpleCarController:
     def run_auto(self):
         # 等待 Gazebo 插件完成订阅，避免前几条速度命令丢失。
         rospy.sleep(1.0)
+        if not self.wait_for_model_pose():
+            return
         self.publish_for(self.forward_speed, 0.0, self.forward_duration, "阶段1 前进")
         self.publish_for(0.12, self.turn_speed, self.turn_duration, "阶段2 左转")
         self.publish_for(self.forward_speed, 0.0, self.forward_duration, "阶段3 前进")
         self.stop_forever()
 
     def run(self):
+        if self.drive_backend == "model_state" and self.mode != "auto":
+            if not self.wait_for_model_pose():
+                return
+
         if self.mode == "auto":
             self.run_auto()
         else:

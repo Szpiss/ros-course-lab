@@ -1,0 +1,23 @@
+--- processes ---
+cuing      22163       1  1 22:08 ?        00:00:00 /usr/bin/python3 /opt/ros/noetic/bin/roslaunch mountain_car_sim mountain_city_air_demo.launch
+cuing      22241   22163  0 22:08 ?        00:00:00 /bin/sh /opt/ros/noetic/lib/gazebo_ros/gzserver -e ode /home/cuing/catkin_ws/src/mountain_car_sim/worlds/mountain_city_air_demo.world __name:=gazebo __log:=/home/cuing/.ros/log/86b80810-6343-11f1-9eeb-8fa35a5e5936/gazebo-2.log
+cuing      22244   22163  0 22:08 ?        00:00:00 /bin/sh /opt/ros/noetic/lib/gazebo_ros/gzclient __name:=gazebo_gui __log:=/home/cuing/.ros/log/86b80810-6343-11f1-9eeb-8fa35a5e5936/gazebo_gui-3.log
+cuing      22252   22163  0 22:08 ?        00:00:00 /usr/bin/python3 /home/cuing/catkin_ws/devel/lib/mountain_car_sim/reset_spawn_model.py __name:=reset_spawn_mountain_car __log:=/home/cuing/.ros/log/86b80810-6343-11f1-9eeb-8fa35a5e5936/reset_spawn_mountain_car-4.log
+cuing      22255   22163  2 22:08 ?        00:00:01 /opt/ros/noetic/lib/robot_state_publisher/robot_state_publisher __name:=mountain_car_state_publisher __log:=/home/cuing/.ros/log/86b80810-6343-11f1-9eeb-8fa35a5e5936/mountain_car_state_publisher-5.log
+cuing      22258   22163  1 22:08 ?        00:00:00 /usr/bin/python3 /home/cuing/catkin_ws/devel/lib/mountain_car_sim/uav_patrol_demo.py __name:=uav_patrol_demo __log:=/home/cuing/.ros/log/86b80810-6343-11f1-9eeb-8fa35a5e5936/uav_patrol_demo-7.log
+cuing      22321   22244 99 22:08 ?        00:01:58 gzclient -g /opt/ros/noetic/lib/libgazebo_ros_paths_plugin.so -g /opt/ros/noetic/lib/libgazebo_ros_api_plugin.so __name:=gazebo_gui __log:=/home/cuing/.ros/log/86b80810-6343-11f1-9eeb-8fa35a5e5936/gazebo_gui-3.log
+cuing      22339   22241 13 22:08 ?        00:00:07 gzserver -e ode /home/cuing/catkin_ws/src/mountain_car_sim/worlds/mountain_city_air_demo.world -s /opt/ros/noetic/lib/libgazebo_ros_paths_plugin.so -s /opt/ros/noetic/lib/libgazebo_ros_api_plugin.so __name:=gazebo __log:=/home/cuing/.ros/log/86b80810-6343-11f1-9eeb-8fa35a5e5936/gazebo-2.log
+cuing      22807   22762  0 22:09 ?        00:00:00 grep -E roslaunch|gzserver|gzclient|uav_patrol|robot_state|spawn_model
+--- models ---
+--- topics ---
+/cmd_vel
+/gazebo/link_states
+/gazebo/model_states
+/gazebo/parameter_descriptions
+/gazebo/parameter_updates
+/gazebo/performance_metrics
+/gazebo/set_link_state
+/gazebo/set_model_state
+/joint_states
+--- services ---
+/gazebo/set_model_state
