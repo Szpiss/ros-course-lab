@@ -90,14 +90,14 @@ ros-course-lab/
 ├── README.md
 ├── docs/
 │   └── reports/
-│       ├── 2315302125 崔子霖1.docx
-│       ├── 2315302125 崔子霖2.docx
-│       ├── 2315302125 崔子霖3.docx
-│       ├── 2315302125 崔子霖4.docx
-│       ├── 2315302125 崔子霖5.docx
-│       ├── 2315302125 崔子霖6.docx
-│       ├── 2315302125 崔子霖7.docx
-│       ├── 2315302125 崔子霖8.docx
+│       ├── 2023000001 张三1.docx
+│       ├── 2023000001 张三2.docx
+│       ├── 2023000001 张三3.docx
+│       ├── 2023000001 张三4.docx
+│       ├── 2023000001 张三5.docx
+│       ├── 2023000001 张三6.docx
+│       ├── 2023000001 张三7.docx
+│       ├── 2023000001 张三8.docx
 │       ├── README.md
 │       └── 03069011 嵌入式系统原理_实验报告-模板.docx
 └── src/
@@ -200,8 +200,8 @@ roscore
 | 实验四 | TF 坐标变换 | `src/tf_demo` | `TransformBroadcaster`、`TransformListener`、`lookupTransform()` |
 | 实验五 | 传感器仿真与机器人运动 | `src/sensor_robot_sim` | `URDF`、Gazebo、`LaserScan`、闭环避障 |
 | 实验六 | 机器人语音识别和自主导航综合实例 | `src/lab6_navigation_demo` | `map_server`、`amcl`、`move_base`、命名航点、语音结果映射 |
-| 实验七 | OpenCV 平面视觉检测仿真 | `docs/reports/2315302125 崔子霖7.docx` | `OpenCV`、`CvBridge`、HSV 阈值分割、颜色目标跟随、人脸检测 |
-| 实验八 | 机器人三维视觉仿真 | `docs/reports/2315302125 崔子霖8.docx` | 点云检测、`/wpb_home/objects_3d`、目标坐标、机械臂抓取 |
+| 实验七 | OpenCV 平面视觉检测仿真 | `docs/reports/2023000001 张三7.docx` | `OpenCV`、`CvBridge`、HSV 阈值分割、颜色目标跟随、人脸检测 |
+| 实验八 | 机器人三维视觉仿真 | `docs/reports/2023000001 张三8.docx` | 点云检测、`/wpb_home/objects_3d`、目标坐标、机械臂抓取 |
 | 大作业 | 山地-城市融合多机器人仿真 | `src/mountain_car_sim` | Gazebo world、SDF、Xacro/URDF、`/cmd_vel`、`/gazebo/set_model_state` |
 
 ## 当前实验说明
